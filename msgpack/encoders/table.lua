@@ -1,5 +1,11 @@
 local is_sequential_array = require('msgpack.helpers.is-sequential-array')
 
+---Compacts a table value into a single byte or more.
+---
+---If the table is a sequential array, it will be packed as a `fixarray`,
+---otherwise, it will be packed as a `map`.
+---@param value table The table value to compact.
+---@return string packed A string containing the packed table value.
 return function(value)
   local encode = function(value)
     return require('msgpack.encoders.' .. type(value))(value)
